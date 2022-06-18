@@ -1,0 +1,40 @@
+version: '3'
+services:
+  employees-postgres:
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  leave-requests-postgres:
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  employees-service:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./employees-service
+    volumes:
+      - /app/node_modules
+      - ./employees-service:/app
+    environment:
+      - PGUSER=postgres
+      - PGHOST=employees-postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
+    ports: 
+      - "5000:5000"
+  leave-requests-service:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./leave-requests-service
+    volumes:
+      - /app/node_modules
+      - ./leave-requests-service:/app
+    environment:
+      - PGUSER=postgres
+      - PGHOST=leave-requests-postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
+    ports: 
+      - "6000:6000"
