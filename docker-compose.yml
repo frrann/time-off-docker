@@ -7,8 +7,8 @@ services:
     environment:
       - PGUSER=$PGUSER
       - PGHOST=$PGHOST
-      - PGDATABASE=$PGDATABASE
-      - PGPASSWORD=$PGPASSWORD
+      - PGDATABASE=$PGDATABASE1
+      - PGPASSWORD=$PGPASSWORD1
       - PGPORT=$PGPORT
   leave-requests-service:
     image: fran902/time-off-requests
@@ -17,8 +17,8 @@ services:
     environment:
       - PGUSER=$PGUSER
       - PGHOST=$PGHOST
-      - PGDATABASE=$PGDATABASE
-      - PGPASSWORD=$PGPASSWORD
+      - PGDATABASE=$PGDATABASE2
+      - PGPASSWORD=$PGPASSWORD2
       - PGPORT=$PGPORT
   email-generation-srv:
     image: fran902/time-off-email-gen

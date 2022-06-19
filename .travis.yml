@@ -16,3 +16,15 @@ after_success:
   - docker push fran902/time-off-email-gen
   - docker push fran902/time-off-employees
   - docker push fran902/time-off-requests
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "time-off-docker"
+  env: "Timeoffdocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-814465906134"
+  bucket_path: "time-off"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
