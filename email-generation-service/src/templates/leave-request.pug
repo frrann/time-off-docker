@@ -1,0 +1,11 @@
+extends baseEmail
+
+block content
+  h3 Hi #{managerFirstname} #{managerLastname}!
+
+  p #{employeeFirstname} #{employeeLastname} has requested to be out of office from #{fromDate} to #{toDate}.
+
+  p Use our application to address this request. 
+
+  p Regards,
+  p System

@@ -38,3 +38,23 @@ services:
       - PGPORT=5432
     ports: 
       - "6000:6000"
+  email-generation-srv:
+    build:
+      dockerfile: Dockerfile
+      context: ./email-generation-service
+    restart: always
+    ports:
+      - "4000:4000"
+  auth-srv:
+    build:
+      dockerfile: Dockerfile
+      context: ./authentication-service
+    restart: always
+    ports:
+      - "3000:3000"
+  mongo:
+    image: mongo
+    ports:
+      - '27018:27018'
+    command: mongod --port 27018
+  

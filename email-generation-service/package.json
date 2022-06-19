@@ -1,0 +1,13 @@
+{
+  "name": "email-generation-service",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pug": "^2.0.3",
+    "nodemailer": "^6.1.1",
+    "html-to-text": "^5.1.1"
+  }
+}
