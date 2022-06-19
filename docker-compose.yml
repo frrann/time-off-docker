@@ -1,71 +1,36 @@
 version: '3'
 services:
-  employees-postgres:
-    image: 'postgres:latest'
-    environment:
-      - POSTGRES_PASSWORD=postgres_password
-  leave-requests-postgres:
-    image: 'postgres:latest'
-    environment:
-      - POSTGRES_PASSWORD=postgres_password
   employees-service:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./employees-service
-    volumes:
-      - /app/node_modules
-      - ./employees-service:/app
+    image: fran902/time-off-employees
+    mem_limit: 128m
+    hostname: employees-service
     environment:
-      - PGUSER=postgres
-      - PGHOST=employees-postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
-    ports: 
-      - "5000:5000"
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
   leave-requests-service:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./leave-requests-service
-    volumes:
-      - /app/node_modules
-      - ./leave-requests-service:/app
+    image: fran902/time-off-requests
+    mem_limit: 128m
+    hostname: leave-requests-service
     environment:
-      - PGUSER=postgres
-      - PGHOST=leave-requests-postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
-    ports: 
-      - "6000:6000"
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
   email-generation-srv:
-    build:
-      dockerfile: Dockerfile
-      context: ./email-generation-service
-    restart: always
-    ports:
-      - "4000:4000"
+    image: fran902/time-off-email-gen
+    mem_limit: 128m
+    hostname: email-generation-srv
   auth-srv:
-    build:
-      dockerfile: Dockerfile
-      context: ./authentication-service
-    restart: always
+    image: fran902/time-off-auth
+    mem_limit: 128m
+    hostname: authentication-service
+  image: fran902/time-off-nginx
+    mem_limit: 128m
+    hostname: nginx
     ports:
-      - "3000:3000"
-  nginx:
-    depends_on:
-      - employees-service
-      - leave-requests-service
-      - auth-srv
-    restart: always
-    build: 
-      dockerfile: Dockerfile.dev
-      context: ./nginx
-    ports:
-      - '3050:80'
-  mongo:
-    image: mongo
-    ports:
-      - '27018:27018'
-    command: mongod --port 27018
+      - '80:80'
   
