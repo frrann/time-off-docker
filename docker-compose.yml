@@ -52,6 +52,17 @@ services:
     restart: always
     ports:
       - "3000:3000"
+  nginx:
+    depends_on:
+      - employees-service
+      - leave-requests-service
+      - auth-srv
+    restart: always
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'
   mongo:
     image: mongo
     ports:

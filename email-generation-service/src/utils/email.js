@@ -13,8 +13,8 @@ class Email {
             host: "smtp.mailtrap.io",
             port: 587,
             auth: {
-                user: "80cffdc2641157",
-                pass: "65229a3feb116d"
+                user: "3641f9f28488d4",
+                pass: "8c455efa196dbc"
             }
         });
     }
