@@ -28,7 +28,8 @@ services:
     image: fran902/time-off-auth
     mem_limit: 128m
     hostname: authentication-service
-  image: fran902/time-off-nginx
+  nginx:
+    image: fran902/time-off-nginx
     mem_limit: 128m
     hostname: nginx
     ports:
