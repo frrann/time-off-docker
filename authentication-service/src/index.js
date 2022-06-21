@@ -5,18 +5,19 @@ const app = require('./app');
 
 const start = async () => {
     try {
+
+        const pem = fs.readFileSync(`${__dirname}/../conf/rds-combined-ca-bundle.pem`);
+
         await mongoose.connect(process.env.MDBHOST, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
             useNewUrlParser: true,
             ssl: true,
             sslValidate: false,
-            sslCA: fs.readFileSync('./../conf/rds-combined-ca-bundle.pem')
+            sslCA: pem
         });
     } catch (err) {
         console.log(err);
     }
+    console.log(pem);
 
     app.listen(3000, () => {
         console.log('Listening on port 3000!')
