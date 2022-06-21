@@ -6,9 +6,9 @@ services:
     hostname: employees-service
     environment:
       - PGUSER=$PGUSER
-      - PGHOST=$PGHOST
+      - PGHOST=$PGHOST1
       - PGDATABASE=$PGDATABASE1
-      - PGPASSWORD=$PGPASSWORD1
+      - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   leave-requests-service:
     image: fran902/time-off-requests
@@ -16,9 +16,9 @@ services:
     hostname: leave-requests-service
     environment:
       - PGUSER=$PGUSER
-      - PGHOST=$PGHOST
+      - PGHOST=$PGHOST2
       - PGDATABASE=$PGDATABASE2
-      - PGPASSWORD=$PGPASSWORD2
+      - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   email-generation-srv:
     image: fran902/time-off-email-gen

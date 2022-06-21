@@ -20,9 +20,9 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
-  app: "time-off-docker"
-  env: "Timeoffdocker-env"
-  bucket_name: "elasticbeanstalk-us-east-1-814465906134"
+  app: "time-off"
+  env: "Timeoff-env"
+  bucket_name: "elasticbeanstalk-us-east-1-423793819332"
   bucket_path: "time-off"
   on:
     branch: master
