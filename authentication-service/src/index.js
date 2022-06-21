@@ -6,7 +6,7 @@ const app = require('./app');
 const start = async () => {
     try {
 
-        const pem = fs.readFileSync(`rds-combined-ca-bundle.pem`);
+        const pem = fs.readFileSync(`${__dirname}/rds-combined-ca-bundle.pem`);
 
         await mongoose.connect(process.env.MDBHOST, {
             useNewUrlParser: true,
