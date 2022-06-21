@@ -3,6 +3,7 @@ services:
   - docker
 
 script:
+  - docker build -t fran902/time-off-auth ./authentication-service
   - docker build -t fran902/time-off-nginx ./nginx
   - docker build -t fran902/time-off-email-gen ./email-generation-service
   - docker build -t fran902/time-off-employees ./employees-service
@@ -10,6 +11,7 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push fran902/time-off-auth
   - docker push fran902/time-off-nginx
   - docker push fran902/time-off-email-gen
   - docker push fran902/time-off-employees
