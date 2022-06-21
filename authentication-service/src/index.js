@@ -6,13 +6,14 @@ const app = require('./app');
 const start = async () => {
     try {
 
-        const pem = fs.readFileSync(`${__dirname}/../conf/rds-combined-ca-bundle.pem`);
+        const pem = fs.readFileSync(`rds-combined-ca-bundle.pem`);
 
         await mongoose.connect(process.env.MDBHOST, {
             useNewUrlParser: true,
+            useFindAndModify: false,
             ssl: true,
             sslValidate: false,
-            sslCA: pem
+            sslCA: [pem]
         });
     } catch (err) {
         console.log(err);
