@@ -52,6 +52,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    environment:
+      - MDBHOST='mongodb://mongo:27018'
   nginx:
     depends_on:
       - employees-service
@@ -67,5 +69,4 @@ services:
     image: mongo
     ports:
       - '27018:27018'
-    command: mongod --port 27018
-  
+    command: mongod --port 27018  

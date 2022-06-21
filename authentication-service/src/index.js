@@ -4,7 +4,7 @@ const app = require('./app');
 
 const start = async () => {
     try {
-        await mongoose.connect('mongodb://mongo:27018', {
+        await mongoose.connect(process.env.MDBHOST, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
