@@ -24,10 +24,10 @@ services:
     image: fran902/time-off-email-gen
     mem_limit: 128m
     hostname: email-generation-srv
-  auth-srv:
-    image: fran902/time-off-auth
-    mem_limit: 128m
-    hostname: authentication-service
+  # auth-srv:
+  #   image: fran902/time-off-auth
+  #   mem_limit: 128m
+  #   hostname: authentication-service
   nginx:
     image: fran902/time-off-nginx
     mem_limit: 128m
